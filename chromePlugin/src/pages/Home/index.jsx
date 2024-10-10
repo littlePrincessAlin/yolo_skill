@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import { Button, Drawer, Input, Form } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, DoubleRightOutlined } from "@ant-design/icons";
 // import { getInfo } from '../../fetch/apis';
 const { TextArea } = Input;
 
@@ -41,14 +41,15 @@ const Home = () => {
       <Button type="primary" onClick={showDrawer}>
         简历工具🔧
       </Button>
-      <Drawer title="简历档案" onClose={onClose} open={open} mask={false}>
+      <Drawer title="简历档案" onClose={onClose} open={open} mask={false} closeIcon={<DoubleRightOutlined />}>
         <p>
-          <UserOutlined /> 您好 {"lilin"}，候选人{jianCode}{info ? "已" : "未"}联系：
+          <UserOutlined />该候选人{jianCode}{info ? "已" : "未"}联系
         </p>
         {!info && (
           <div>
             <Form
               name="basic"
+              layout="vertical"
               labelCol={{
                 span: 8,
               }}
@@ -65,21 +66,6 @@ const Home = () => {
               onFinishFailed={onFinishFailed}
               autoComplete="off"
             >
-              <Form.Item
-                label="邮箱/姓名"
-                name="username"
-                rules={[
-                  {
-                    required: true,
-                    message: "请输入您的邮箱或姓名!",
-                  },
-                ]}
-              >
-                <Input
-                  placeholder="输入邮箱或姓名"
-                  prefix={<UserOutlined />}
-                />
-              </Form.Item>
 
               <Form.Item label="备注" name="describe">
                 <TextArea rows={4} />
@@ -87,8 +73,8 @@ const Home = () => {
 
               <Form.Item
                 wrapperCol={{
-                  offset: 8,
-                  span: 16,
+                  offset: 0,
+                  span: 1,
                 }}
               >
                 <Button type="primary" htmlType="submit">
